@@ -1,0 +1,11 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "Home Page";
+    ViewBag.Data = HttpContextAccessor.HttpContext.Session.GetString("Username");
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome @ViewBag.Data</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
