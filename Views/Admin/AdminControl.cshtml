@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "AdminControl";
+    Layout = "_AdminLayout";
+}
+
+@{
+    ViewData["Title"] = "Admin";
+}
+<style>
+    .c1 {
+        margin: 0 auto; 
+        float: none; 
+        margin-bottom: 10px; 
+    }
+</style>
+<br />
+<h2 class="text-danger">Admin Control</h2>
+<div class="container mt-5 mb-3">
+    <div class="row">
+        <div class="col-md-4 c1">
+            <div class="card text-white border-danger bg-dark" style="width: 18rem;">
+                <div class="card-body">
+                    <div class="card-header text-danger">Access Control</div>
+                    <div class="text-center">
+                        <h5 class="card-title"><a asp-controller="Fiber" asp-action="UpdatePlan" class="btn btn-outline-danger">Add Plans</a></h5>
+                    </div>
+                    <div class="text-center">
+                        <h6 class="card-text text-danger"><a asp-controller="Offers" asp-action="UpdateOffer" class="btn btn-outline-danger">Add Offers</a></h6>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

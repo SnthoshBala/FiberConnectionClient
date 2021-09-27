@@ -1,0 +1,67 @@
+﻿@model FiberConnectionClient.Models.Offer
+
+@{
+    ViewData["Title"] = "OfferDetails";
+}
+<style>
+    .c1 {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
+</style>
+<br />
+<h2 class="text-danger">Offers</h2>
+<hr class="bg-danger" />
+<div class="container mt-5 mb-3n c1">
+            <div class="col-md-4 c1">
+                <div class="card text-white border-danger bg-dark c1" style="width: 18rem;">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title"> Offers</h5>
+                        </div>
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> @Html.DisplayNameFor(model => model.Voot) : <span class="text-white"> @Html.DisplayFor(model => model.Voot)</span></h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> @Html.DisplayNameFor(model => model.Ultra) : <span class="text-white"> @Html.DisplayFor(model => model.Ultra)</span></h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> @Html.DisplayNameFor(model => model.Hungamaplay) : <span class="text-white"> @Html.DisplayFor(model => model.Hungamaplay)</span></h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger">  @Html.DisplayNameFor(model => model.Lionplay) : <span class="text-white"> @Html.DisplayFor(model => model.Lionplay)</span></h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger">@Html.DisplayNameFor(model => model.Netflix) : <span class="text-white"> @Html.DisplayFor(model => model.Netflix)</span></h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> @Html.DisplayNameFor(model => model.Hotstar) : <span class="text-white"> @Html.DisplayFor(model => model.Hotstar)</span></h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> @Html.DisplayNameFor(model => model.Others) : <span class="text-white"> @Html.DisplayFor(model => model.Others)</span></h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"><img src="~/images/unlimited.png" width="50" height="50" class="d-inline-block align-top" alt=""> Unlimted</h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> 24*7 std/isd Free</h6>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="text-center card-footer border-danger">
+                            <a asp-controller="Fiber" asp-action="PlanDetails" class="btn btn-outline-danger">Back</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

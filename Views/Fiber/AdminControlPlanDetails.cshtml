@@ -1,0 +1,63 @@
+﻿@model IEnumerable< FiberConnectionClient.Models.FiberPlan >
+
+@{
+    ViewData["Title"] = "AdminControlPlanDetails";
+}
+
+
+<h1 class="text-danger">PlanList</h1>
+
+<table class="table border-danger">
+    <thead class="text-danger">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlanSpeed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Validity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfferId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody class="text-light">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PlanSpeed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Validity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfferId)
+                </td>
+                <td>
+                    <a class="btn btn-outline-danger" asp-action="AdminControlEditPlan" asp-route-id="@item.PlanId">Edit</a> |
+                    <a class="btn btn-outline-danger" asp-action="AdminControlDeletePlan" asp-route-id="@item.PlanId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

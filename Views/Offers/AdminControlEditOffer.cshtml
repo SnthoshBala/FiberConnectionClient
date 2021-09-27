@@ -1,0 +1,68 @@
+﻿@model FiberConnectionClient.Models.Offer
+
+@{
+    ViewData["Title"] = "AdminControlEditOffer";
+}
+
+<h1>AdminControlEditOffer</h1>
+
+<h4>Offer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AdminControlEditOffer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="OfferId" class="control-label"></label>
+                <input asp-for="OfferId" class="form-control" />
+                <span asp-validation-for="OfferId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Voot" class="control-label"></label>
+                <input asp-for="Voot" class="form-control" />
+                <span asp-validation-for="Voot" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Lionplay" class="control-label"></label>
+                <input asp-for="Lionplay" class="form-control" />
+                <span asp-validation-for="Lionplay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hungamaplay" class="control-label"></label>
+                <input asp-for="Hungamaplay" class="form-control" />
+                <span asp-validation-for="Hungamaplay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ultra" class="control-label"></label>
+                <input asp-for="Ultra" class="form-control" />
+                <span asp-validation-for="Ultra" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hotstar" class="control-label"></label>
+                <input asp-for="Hotstar" class="form-control" />
+                <span asp-validation-for="Hotstar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Netflix" class="control-label"></label>
+                <input asp-for="Netflix" class="form-control" />
+                <span asp-validation-for="Netflix" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Others" class="control-label"></label>
+                <input asp-for="Others" class="form-control" />
+                <span asp-validation-for="Others" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

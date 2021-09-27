@@ -1,0 +1,69 @@
+﻿@model IEnumerable<FiberConnectionClient.Models.FiberPlan>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "PlanDetails";
+}
+@{
+    ViewBag.Data = HttpContextAccessor.HttpContext.Session.GetString("Username");
+}
+<style>
+    .card {
+        margin-bottom: 10px;
+    }
+</style>
+<br />
+<h2 class="text-danger">PlanDetails</h2>
+<div class="container mt-5 mb-3">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <div class="card text-white border-danger bg-dark" style="width: 18rem;">
+                    <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title">@Html.DisplayFor(modelItem => item.PlanName)</h5>
+                        </div>
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> Plan Speed: <span class="text-white">@Html.DisplayFor(modelItem => item.PlanSpeed)</span></h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> Plan Validity: <span class="text-white">@Html.DisplayFor(modelItem => item.Validity)</span></h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> Plan Price: <span class="text-white">₹@Html.DisplayFor(modelItem => item.PlanPrice)</span></h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> Unlimted</h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text text-danger"> 24*7 std/isd Free</h6>
+                        </div>
+                        <br />
+                        <div class="text-center card-footer border-danger">
+                            <a asp-controller="Offers" asp-action="OfferDetails" asp-route-id="@item.OfferId" class="btn btn-outline-danger">Offers</a>
+                        </div>
+                        <br />
+                        <div class="text-center card-footer border-danger">
+                            @if (@ViewBag.Data == null)
+                            {
+                                <a asp-controller="Customer" asp-action="CustomerLogin" class="btn btn-outline-danger">Buy</a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Billing" asp-action="Request" asp-route-id="@item.PlanId" class="btn btn-outline-danger">Buy</a>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
