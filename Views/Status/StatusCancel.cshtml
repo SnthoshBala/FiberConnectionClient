@@ -1,0 +1,62 @@
+﻿@model FiberConnectionClient.Models.Status
+
+@{
+    ViewData["Title"] = "StatusCancel";
+}
+
+<style>
+    .tcolor {
+        color: #03e9f4;
+    }
+
+    .c1 {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
+
+    .text-n {
+        color: #8a6ea7;
+    }
+</style>
+<br />
+<div class="flash">
+    <h2>Are you sure you want to delete this Plan ?</h2>
+</div>
+<div class="card crd c1 bg-dark login-box" style="max-width: 30rem;">
+    <h2>FiberPlan</h2>
+    <hr />
+            <div>
+                <div class="card-body text-center">
+                    <div class="text-center text-n">
+                        Name : <span class="tcolor">@Html.DisplayFor(model => model.CustomerName)</span>
+                    </div>
+                    <br />
+                    <div class="text-center text-n">
+                        Plan : <span class="tcolor">@Html.DisplayFor(model => model.PlanName)</span>
+                    </div>
+                    <br />
+                    <div class="text-center text-n">
+                        Plan Price : <span class="tcolor">@Html.DisplayFor(model => model.PlanPrice)</span>
+                    </div>
+                    <br />
+                    <div class="text-center text-n">
+                        Status : <span class="tcolor">@Html.DisplayFor(model => model.Status1)</span>
+                    </div>
+                    <br />
+
+
+                    <form asp-action="StatusCancel" id="f1" class="c1 flash">
+                        <input type="hidden" asp-for="StatusId" />
+                        <a href="#" onclick="document.getElementById('f1').submit();">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            Delete
+                        </a>
+                        <a asp-action="StatusList">Back</a>
+                    </form>
+                </div>
+            </div>
+</div>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,11 +15,20 @@ namespace FiberConnectionClient.Models
         }
 
         public int PlanId { get; set; }
+        [Required]
+        [StringLength(150)]
         public string PlanName { get; set; }
+        [Required]
+        [DataType(DataType.Currency)]
         public string PlanPrice { get; set; }
+        [Required]
+
         public string PlanSpeed { get; set; }
+        [Required]
         public string Validity { get; set; }
+        [Required]
         public int? OfferId { get; set; }
+        [Required]
         public string Image { get; set; }
 
         public virtual Offer Offer { get; set; }

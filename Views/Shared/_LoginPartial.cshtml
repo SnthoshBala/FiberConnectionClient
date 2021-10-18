@@ -2,27 +2,32 @@
 @inject IHttpContextAccessor HttpContextAccessor
 <ul class="navbar-nav">
     @{
-        ViewBag.Data = HttpContextAccessor.HttpContext.Session.GetString("Username");
+        ViewBag.Data = HttpContextAccessor.HttpContext.Request.Cookies["Username"];
+        ViewBag.Token = HttpContextAccessor.HttpContext.Request.Cookies["Token"];
+
     }
-    @if (@ViewBag.Data != null)
+    @if (@ViewBag.Token != null)
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Fiber" asp-action="PlanDetails">@ViewBag.Data</a>
+            <a class="nav-link tcolor" asp-controller="Customer" asp-action="Profile">@ViewBag.Data</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Customer" asp-action="Logout">Logout</a>
+            <a class="nav-link tcolor" asp-controller="Customer" asp-action="Logout">Logout</a>
         </li>
     }
     else
     {
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Customer" asp-action="RegisterCustomer">Register</a>
+            <a class="nav-link tcolor" asp-controller="Customer" asp-action="RegisterCustomer">Register</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Customer" asp-action="CustomerLogin">Login</a>
+            <a class="nav-link tcolor" asp-controller="Customer" asp-action="CustomerLogin">Login</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link text-dark" asp-controller="Admin" asp-action="AdminControl">Admin</a>
+            <a class="nav-link tcolor" asp-controller="Admin" asp-action="AdminControl">Admin</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link tcolor" asp-controller="Status" asp-action="AllStatus">Employee</a>
         </li>
     }
 </ul>

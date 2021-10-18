@@ -3,55 +3,62 @@
 @{
     ViewData["Title"] = "AdminControlDeletePlan";
 }
+@{
+    Layout = "_AdminLayout";
+}
+<style>
+    .tcolor {
+        color: #03e9f4;
+    }
 
-<h1>AdminControlDeletePlan</h1>
+    .c1 {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>FiberPlan</h4>
+    .text-n {
+        color: #8a6ea7;
+    }
+</style>
+<br />
+<div class="flash">
+    <h2>Are you sure you want to delete this Plan ?</h2>
+</div>
+<div class="card crd c1 bg-dark login-box" style="max-width: 30rem;">
+    <h2>FiberPlan</h2>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlanName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlanName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlanPrice)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlanPrice)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PlanSpeed)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PlanSpeed)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Validity)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Validity)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Offer)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Offer.OfferId)
-        </dd class>
-    </dl>
-    
-    <form asp-action="AdminControlDeletePlan">
-        <input type="hidden" asp-for="PlanId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
+    <div>
+        <div class="card-body text-center">
+            <div class="text-center text-n">
+                Name : <span class="tcolor">@Html.DisplayFor(model => model.PlanName)</span>
+            </div>
+            <br />
+            <div class="text-center text-n">
+                Plan Price : <span class="tcolor">@Html.DisplayFor(model => model.PlanPrice)</span>
+            </div>
+            <br />
+            <div class="text-center text-n">
+                Plan Speed : <span class="tcolor">@Html.DisplayFor(model => model.PlanSpeed)</span>
+            </div>
+            <br />
+            <div class="text-center text-n">
+                Image : <span class="tcolor">@Html.DisplayFor(model => model.Image)</span>
+            </div>
+            <br />
+
+
+            <form asp-action="AdminControlDeletePlan" id="f1" class="c1 flash">
+                <input type="hidden" asp-for="PlanId" />
+                <a href="#" onclick="document.getElementById('f1').submit();">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Delete
+                </a>
+                <a asp-action="AdminControlPlanDetails">Back</a>
+            </form>
+        </div>
+    </div>
 </div>

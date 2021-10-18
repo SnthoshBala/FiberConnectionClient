@@ -1,16 +1,19 @@
 ﻿@model IEnumerable<FiberConnectionClient.Models.Customer>
 
 @{
+    ViewData["Title"] = "AdminControl";
+    Layout = "_AdminLayout";
+}
+@{
     ViewData["Title"] = "CustomerList";
 }
 
-<h1>CustomerList</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table table-responsive">
-    <thead>
+<br />
+<div class="flash">
+    <h2>Booking Status</h2>
+</div>
+<table class="table table-responsive bg-dark crd">
+    <thead style="color: #03e9f4;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.CustomerId)
@@ -39,34 +42,35 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfBirth)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerAddress)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerPhoneNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerAadharNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerMailId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CustomerPassword)
-            </td>
-        </tr>
-}
+    <tbody style="color: #8a6ea7;">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerAddress)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerAadharNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerMailId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerPassword)
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

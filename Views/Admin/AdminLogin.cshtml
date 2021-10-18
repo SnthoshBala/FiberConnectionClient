@@ -3,36 +3,45 @@
 @{
     ViewData["Title"] = "AdminLogin";
 }
-
-<h1>AdminLogin</h1>
-
-<h4>Admin</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AdminLogin">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="AdminUserName" class="control-label"></label>
-                <input asp-for="AdminUserName" class="form-control" />
-                <span asp-validation-for="AdminUserName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AdminPassword" class="control-label"></label>
-                <input asp-for="AdminPassword" class="form-control" />
-                <span asp-validation-for="AdminPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+@{
+    Layout = "_AdminLayout";
+}
+<style>
+    .c1 {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="card crd bg-dark mb-3 c1" style="max-width: 30rem;">
+    <div class="card-body">
+        <div class="login-box">
+            <h2><span><img src="~/images/adminname.png" width="40" height="40" class="d-inline-block align-top" alt=""> </span>Admin Login</h2>
+            <form id="f1" asp-action="AdminLogin">
+                <div class="user-box">
+                    <input asp-for="AdminUserName" required>
+                    <label><span><img src="~/images/adminname.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span>Admin Name</label>
+                    <span asp-validation-for="AdminUserName" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="AdminPassword" required>
+                    <label><span><img src="~/images/adminpass.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span>Admin Password</label>
+                    <span asp-validation-for="AdminPassword" class="text-danger"></span>
+                </div>
+                <a href="#" onclick="document.getElementById('f1').submit();">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <img src="~/images/login.png" width="25" height="25" class="d-inline-block align-top" alt=""> Login
+                </a>
+            </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

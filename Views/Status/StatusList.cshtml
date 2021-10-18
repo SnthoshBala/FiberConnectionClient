@@ -1,0 +1,71 @@
+﻿@model IEnumerable<FiberConnectionClient.Models.Status>
+
+@{
+    ViewData["Title"] = "StatusList";
+}
+<br />
+<div class="flash">
+    <h2><span><img src="~/images/status.png" width="40" height="40" class="d-inline-block align-top" alt=""> </span>Customer Status</h2>
+</div>
+<table class="table bg-dark crd">
+    <thead style="color: #03e9f4;">
+        <tr>
+            <th>
+                <span><img src="~/images/Plan.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> PlanNamw
+            </th>
+            <th>
+                <span><img src="~/images/price.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span>  PlanPrice
+            </th>
+            <th>
+                <span><img src="~/images/user1.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> CustomerName
+            </th>
+            <th>
+                <span><img src="~/images/address.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> CustomerAddress
+            </th>
+            <th>
+                <span><img src="~/images/phone.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> PhoneNumber
+            </th>
+            <th>
+                <span><img src="~/images/employee.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span>  WorkerName
+            </th>
+            <th>
+                <span><img src="~/images/status.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> Status
+            </th>
+            <th>
+                <span><img src="~/images/action.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span>  Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody style="color: #8a6ea7;">
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CustomerPhonenumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmployeeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status1)
+            </td>
+            <td class="flash">
+                <a asp-action="StatusDetails" asp-route-id="@item.StatusId"><img src="~/images/show.png" width="25" height="25" class="d-inline-block align-top" alt=""> Show</a>
+                <a asp-action="StatusCancel" asp-route-id="@item.StatusId"><img src="~/images/cancel.png" width="25" height="25" class="d-inline-block align-top" alt=""> Cancel</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

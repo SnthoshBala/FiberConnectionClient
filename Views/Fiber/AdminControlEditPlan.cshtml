@@ -3,54 +3,70 @@
 @{
     ViewData["Title"] = "AdminControlEditPlan";
 }
-
-<h1>AdminControlEditPlan</h1>
-
-<h4>FiberPlan</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="AdminControlEditPlan">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="PlanId" />
-            <div class="form-group">
-                <label asp-for="PlanName" class="control-label"></label>
-                <input asp-for="PlanName" class="form-control" />
-                <span asp-validation-for="PlanName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PlanPrice" class="control-label"></label>
-                <input asp-for="PlanPrice" class="form-control" />
-                <span asp-validation-for="PlanPrice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="PlanSpeed" class="control-label"></label>
-                <input asp-for="PlanSpeed" class="form-control" />
-                <span asp-validation-for="PlanSpeed" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Validity" class="control-label"></label>
-                <input asp-for="Validity" class="form-control" />
-                <span asp-validation-for="Validity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OfferId" class="control-label"></label>
-                <select asp-for="OfferId" class="form-control" asp-items="ViewBag.OfferId"></select>
-                <span asp-validation-for="OfferId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
-                <span asp-validation-for="Image" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+@{
+    Layout = "_AdminLayout";
+}
+<style>
+    .c1 {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="card crd bg-dark mb-3 c1" style="max-width: 30rem;">
+    <div class="card-body">
+        <div class="login-box">
+            <h2>Edit Plan</h2>
+            <form id="f1" asp-action="AdminControlEditPlan">
+                <div class="user-box">
+                    <input asp-for="PlanId" required>
+                    <label>Id</label>
+                    <span asp-validation-for="PlanId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="PlanName" required>
+                    <label>Plan Name</label>
+                    <span asp-validation-for="PlanName" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="PlanPrice" required>
+                    <label>Plan Price</label>
+                    <span asp-validation-for="PlanPrice" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="PlanSpeed" required>
+                    <label>Speed</label>
+                    <span asp-validation-for="PlanSpeed" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Validity" required>
+                    <label>Validity</label>
+                    <span asp-validation-for="Validity" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="OfferId" required>
+                    <label>OfferId</label>
+                    <span asp-validation-for="OfferId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Image" required>
+                    <label>Image</label>
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <a href="#" onclick="document.getElementById('f1').submit();">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Edit
+                </a>
+                <a asp-action="AdminControlPlanDetails">
+                    Back
+                </a>
+            </form>
+        </div>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-

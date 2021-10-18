@@ -3,14 +3,15 @@
 @{
     ViewData["Title"] = "AdminControlOfferDetails";
 }
-
-<h1>AdminControlOfferDetails</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
+@{
+    Layout = "_AdminLayout";
+}
+<br />
+<div class="flash">
+    <h2>Offer Details</h2>
+</div>
+<table class="table bg-dark crd">
+    <thead style="color: #03e9f4;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.OfferId)
@@ -36,42 +37,44 @@
             <th>
                 @Html.DisplayNameFor(model => model.Others)
             </th>
-            <th></th>
+            <th>
+                Actions
+            </th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OfferId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Voot)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lionplay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hungamaplay)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ultra)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Hotstar)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Netflix)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Others)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+    <tbody style="color: #8a6ea7;">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfferId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Voot)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Lionplay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hungamaplay)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ultra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hotstar)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Netflix)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Others)
+                </td>
+                <td class="flash">
+                    @Html.ActionLink("Update", "AdminControlEditOffer", new { id = item.OfferId })
+                    @Html.ActionLink("Delete", "AdminControlDeleteOffer", new { id = item.OfferId })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

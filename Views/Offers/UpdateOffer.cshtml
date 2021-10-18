@@ -12,60 +12,69 @@
         margin-bottom: 10px; /* Added */
     }
 </style>
-<h2 class="text-light">Add Offers</h2>
-
-<hr class="bg-danger" />
-<div class="card border-light bg-danger mb-3 c1" style="max-width: 30rem;">
-    <div class="card-body text-danger">
-        <div class="card-header text-light"> Update Offers</div>
-        <div class="row">
-            <div class="col-md-10">
-                <form asp-action="UpdateOffer">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Voot" class="control-label text-dark"></label>
-                        <input asp-for="Voot" class="form-control" />
-                        <span asp-validation-for="Voot" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Lionplay" class="control-label text-dark"></label>
-                        <input asp-for="Lionplay" class="form-control" />
-                        <span asp-validation-for="Lionplay" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hungamaplay" class="control-label text-dark"></label>
-                        <input asp-for="Hungamaplay" class="form-control" />
-                        <span asp-validation-for="Hungamaplay" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Ultra" class="control-label text-dark"></label>
-                        <input asp-for="Ultra" class="form-control" />
-                        <span asp-validation-for="Ultra" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Hotstar" class="control-label text-dark"></label>
-                        <input asp-for="Hotstar" class="form-control" />
-                        <span asp-validation-for="Hotstar" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Netflix" class="control-label text-dark"></label>
-                        <input asp-for="Netflix" class="form-control" />
-                        <span asp-validation-for="Netflix" class="text-danger"></span>
-                    </div>
-                    <div class="form-group"> 
-                        <label asp-for="Others" class="control-label text-dark"></label>
-                        <input asp-for="Others" class="form-control" />
-                        <span asp-validation-for="Others" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Update Offers" class="btn btn-dark btn-outline-danger" />
-                    </div>
-                </form>
-            </div>
-        </div>
+<br />
+<br />
+<br />
+<div class="card crd bg-dark mb-3 c1" style="max-width: 30rem;">
+    <div class="card-body">
+        <div class="login-box">
+            <h2>Add Offer</h2>
+            <form id="f1" asp-action="UpdateOffer">
+                <div class="user-box">
+                    <input asp-for="OfferId" required>
+                    <label>Id</label>
+                    <span asp-validation-for="OfferId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Voot" required>
+                    <label>Voot</label>
+                    <span asp-validation-for="Voot" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Lionplay" required>
+                    <label>Lionplay</label>
+                    <span asp-validation-for="Lionplay" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Hungamaplay" required>
+                    <label>Hungamaplay</label>
+                    <span asp-validation-for="Hungamaplay" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Ultra" required>
+                    <label>Ultra</label>
+                    <span asp-validation-for="Ultra" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Hotstar" required>
+                    <label>Hotstar</label>
+                    <span asp-validation-for="Hotstar" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Netflix" required>
+                    <label>Netflix</label>
+                    <span asp-validation-for="Netflix" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Others" required>
+                    <label>Others</label>
+                    <span asp-validation-for="Others" class="text-danger"></span>
+                </div>
+                <a href="#" onclick="document.getElementById('f1').submit();">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Add Offer
+                </a>
+                <a asp-action="AdminControl" asp-controller="Admin">
+                    Back
+                </a>
+            </form>
         </div>
     </div>
+</div>
 
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

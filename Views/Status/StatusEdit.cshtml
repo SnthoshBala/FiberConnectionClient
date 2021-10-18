@@ -1,0 +1,96 @@
+﻿@model FiberConnectionClient.Models.Status
+
+@{
+    ViewData["Title"] = "StatusEdit";
+}
+<style>
+    .c1 {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="card border-light bg-dark mb-3 c1" style="max-width: 30rem;">
+    <div class="card-body">
+        <div class="login-box">
+            <h2>Sign Up</h2>
+            <form id="f1" asp-action="StatusEdit">
+                <div class="user-box">
+                    <input asp-for="StatusId" required>
+                    <label>StatusId</label>
+                    <span asp-validation-for="StatusId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Status1" required autofocus>
+                    <label>Status</label>
+                    <span asp-validation-for="Status1" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="EmployeeId" required>
+                    <label>EmployeeId</label>
+                    <span asp-validation-for="EmployeeId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerId" required>
+                    <label>Customer Id</label>
+                    <span asp-validation-for="CustomerId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="PlanId" required>
+                    <label>Plan Id</label>
+                    <span asp-validation-for="PlanId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="PlanName" required>
+                    <label>Plan Name</label>
+                    <span asp-validation-for="PlanName" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="PlanId" required>
+                    <label>Plan Id</label>
+                    <span asp-validation-for="PlanId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="PlanPrice" required>
+                    <label>Plan Price</label>
+                    <span asp-validation-for="PlanPrice" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="BillingNumber" required>
+                    <label>Billing Number</label>
+                    <span asp-validation-for="BillingNumber" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerAddress" required>
+                    <label>Customer Address</label>
+                    <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerPhonenumber" required>
+                    <label>Customer PhoneNumber</label>
+                    <span asp-validation-for="CustomerPhonenumber" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="EmployeeName" required>
+                    <label>Employee Name</label>
+                    <span asp-validation-for="EmployeeName" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="EmployeePhonenumber" required>
+                    <label>Employee Phonenumber</label>
+                    <span asp-validation-for="EmployeePhonenumber" class="text-danger"></span>
+                </div>
+                <a href="#" onclick="document.getElementById('f1').submit();">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Confirm Work
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

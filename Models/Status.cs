@@ -18,6 +18,8 @@ namespace FiberConnectionClient.Models
         public string CustomerName { get; set; }
         public string EmployeeName { get; set; }
         public string EmployeePhonenumber { get; set; }
+        public string CustomerPhonenumber { get; set; }
+        public string CustomerAddress { get; set; }
 
         public virtual Billing BillingNumberNavigation { get; set; }
         public virtual Customer Customer { get; set; }

@@ -9,59 +9,61 @@
         float: none; /* Added */
         margin-bottom: 10px; /* Added */
     }
+    .text-n {
+        color: #8a6ea7;
+    }
+    .tcolor {
+        color: #03e9f4;
+    }
 </style>
-<br />
-<h2 class="text-danger">Offers</h2>
-<hr class="bg-danger" />
 <div class="container mt-5 mb-3n c1">
             <div class="col-md-4 c1">
-                <div class="card text-white border-danger bg-dark c1" style="width: 18rem;">
+                <div class="card crd bg-dark tcolor" style="width: 18rem;">
                     <div class="card-body">
                         <div class="text-center">
-                            <h5 class="card-title"> Offers</h5>
+                            <h5 class="card-title text-white"><span><img src="~/images/Offer.png" width="40" height="40" class="d-inline-block align-top" alt=""></span> Offers</h5>
                         </div>
                         <div class="text-center">
-                            <h6 class="card-text text-danger"> @Html.DisplayNameFor(model => model.Voot) : <span class="text-white"> @Html.DisplayFor(model => model.Voot)</span></h6>
-                        </div>
-                        <br />
-                        <div class="text-center">
-                            <h6 class="card-text text-danger"> @Html.DisplayNameFor(model => model.Ultra) : <span class="text-white"> @Html.DisplayFor(model => model.Ultra)</span></h6>
+                            <h6 class="card-text tcolor"><span><img src="~/images/voot.jfif" width="25" height="25" class="d-inline-block align-top" alt=""> </span> @Html.DisplayNameFor(model => model.Voot) : <span class="text-n"> @Html.DisplayFor(model => model.Voot)</span></h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger"> @Html.DisplayNameFor(model => model.Hungamaplay) : <span class="text-white"> @Html.DisplayFor(model => model.Hungamaplay)</span></h6>
+                            <h6 class="card-text"><span><img src="~/images/ultra.jfif" width="25" height="25" class="d-inline-block align-top" alt=""> </span> @Html.DisplayNameFor(model => model.Ultra) : <span class="text-n"> @Html.DisplayFor(model => model.Ultra)</span></h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger">  @Html.DisplayNameFor(model => model.Lionplay) : <span class="text-white"> @Html.DisplayFor(model => model.Lionplay)</span></h6>
+                            <h6 class="card-text "><span><img src="~/images/hungama.jfif" width="25" height="25" class="d-inline-block align-top" alt=""> </span> @Html.DisplayNameFor(model => model.Hungamaplay) : <span class="text-n"> @Html.DisplayFor(model => model.Hungamaplay)</span></h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger">@Html.DisplayNameFor(model => model.Netflix) : <span class="text-white"> @Html.DisplayFor(model => model.Netflix)</span></h6>
+                            <h6 class="card-text"><span><img src="~/images/lionplay.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span>  @Html.DisplayNameFor(model => model.Lionplay) : <span class="text-n"> @Html.DisplayFor(model => model.Lionplay)</span></h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger"> @Html.DisplayNameFor(model => model.Hotstar) : <span class="text-white"> @Html.DisplayFor(model => model.Hotstar)</span></h6>
+                            <h6 class="card-text"><span><img src="~/images/netflix.jfif" width="25" height="25" class="d-inline-block align-top" alt=""> </span>@Html.DisplayNameFor(model => model.Netflix) : <span class="text-n"> @Html.DisplayFor(model => model.Netflix)</span></h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger"> @Html.DisplayNameFor(model => model.Others) : <span class="text-white"> @Html.DisplayFor(model => model.Others)</span></h6>
+                            <h6 class="card-text"><span><img src="~/images/hotstar.jfif" width="25" height="25" class="d-inline-block align-top" alt=""> </span> @Html.DisplayNameFor(model => model.Hotstar) : <span class="text-n"> @Html.DisplayFor(model => model.Hotstar)</span></h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger"><img src="~/images/unlimited.png" width="50" height="50" class="d-inline-block align-top" alt=""> Unlimted</h6>
+                            <h6 class="card-text"><span><img src="~/images/hotstar.jfif" width="25" height="25" class="d-inline-block align-top" alt=""> </span> @Html.DisplayNameFor(model => model.Others) : <span class="text-n"> @Html.DisplayFor(model => model.Others)</span></h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger"> 24*7 std/isd Free</h6>
+                            <h6 class="card-text"><span><img src="~/images/wifi.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> Unlimted</h6>
+                        </div>
+                        <br />
+                        <div class="text-center">
+                            <h6 class="card-text"><span><img src="~/images/free.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> 24*7 std/isd Free</h6>
                         </div>
                         <br />
                         <br />
-                        <div class="text-center card-footer border-danger">
-                            <a asp-controller="Fiber" asp-action="PlanDetails" class="btn btn-outline-danger">Back</a>
+                        <div class="text-center card-footer border-white flash">
+                            <a asp-controller="Fiber" asp-action="PlanDetails" class="btn btn-outline-light">Back</a>
                         </div>
                     </div>
                 </div>
             </div>
     </div>
-</div>

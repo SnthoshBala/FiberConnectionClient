@@ -16,15 +16,24 @@ namespace FiberConnectionClient.Models
 
         public int CustomerId { get; set; }
         [Required]
+        [StringLength(150)]
         public string CustomerName { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
+        [Required]
         public string CustomerAddress { get; set; }
-        [StringLength(maximumLength: 10, ErrorMessage = "Invalid Number", MinimumLength = 10)]
+        [Required]
+        [StringLength(maximumLength: 10, ErrorMessage = "Phone number should be of 10 digits", MinimumLength = 10)]
         public string CustomerPhoneNumber { get; set; }
-        [StringLength(maximumLength: 16, ErrorMessage = "Invalid Number", MinimumLength = 16)]
+        [Required]
+        [StringLength(maximumLength: 16, ErrorMessage = "Aadhar Number should be of 16 digits", MinimumLength = 16)]
         public string CustomerAadharNo { get; set; }
-        [EmailAddress]
+        [Required(ErrorMessage = "Please enter EmailID")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "Invalid EmailId")]
         public string CustomerMailId { get; set; }
+        [Required]
+        [DataType(DataType.Password, ErrorMessage = "Enter Correct Password")]
         public string CustomerPassword { get; set; }
 
         public virtual ICollection<Billing> Billings { get; set; }

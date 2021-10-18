@@ -1,0 +1,113 @@
+﻿@model FiberConnectionClient.Models.Billing
+
+@{
+    ViewData["Title"] = "RequestBilling";
+}
+
+<style>
+    .c1 {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
+    .aa {
+        top: -20px;
+        left: 0;
+        color: #03e9f4;
+        font-size: 12px;
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="card crd bg-dark c1" style="max-width: 30rem;">
+    <div class="card-body">
+        <div class="login-box">
+            <h2>Billing</h2>
+            <form id="f1" asp-action="RequestBilling">
+                <div class="user-box">
+                    <input asp-for="CustomerId" required hidden>
+                    <input asp-for="PlanId" required hidden />
+                    <input asp-for="BillingNumber" required hidden />
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerName" required>
+                    <label>Name</label>
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerAadharNo" required>
+                    <label>Aadhar Number</label>
+                    <span asp-validation-for="CustomerAadharNo" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerAddress" required>
+                    <label>Address</label>
+                    <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="DateOfBirth" required>
+                    <label>Date of Birth</label>
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerPhoneNumber" required>
+                    <label>Phone Number</label>
+                    <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerMailId" required>
+                    <label>Mail ID</label>
+                    <span asp-validation-for="CustomerMailId" class="text-danger"></span>
+                </div>
+                <div class="user-box aa">
+                    <input asp-for="PlanName" required readonly >
+                    <div class="aa">Plan Name</div>
+                    <span asp-validation-for="PlanName" class="text-danger"></span>
+                </div>
+                <div class="user-box aa">
+                    <input asp-for="PlanPrice" required readonly >
+                    <label>Price</label>
+                    <span asp-validation-for="PlanPrice" class="text-danger"></span>
+                </div>
+                <div class="user-box aa">
+                    <input asp-for="PaymentMethod" required readonly >
+                    <label>Payment Method</label>
+                    <span asp-validation-for="PaymentMethod" class="text-danger"></span>
+                </div>
+                <div class="user-box aa">
+                    <input asp-for="BookedDate" required readonly >
+                    <label>Booking Date</label>
+                    <span asp-validation-for="BookedDate" class="text-danger"></span>
+                </div>
+                <div class="user-box aa">
+                    <input asp-for="Tax" required readonly >
+                    <label>Tax</label>
+                    <span asp-validation-for="Tax" class="text-danger"></span>
+                </div>
+                <div class="user-box aa">
+                    <input asp-for="Total" required readonly >
+                    <label>Total</label>
+                    <span asp-validation-for="Total" class="text-danger"></span>
+                </div>
+                <a href="#" onclick="document.getElementById('f1').submit();">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Buy
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <span>
+                    <a asp-action="PlanDetails" asp-controller="Fiber">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Back
+                    </a>
+                </span>
+            </form>
+        </div>
+    </div>
+</div>

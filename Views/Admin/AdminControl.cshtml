@@ -9,29 +9,46 @@
 }
 <style>
     .c1 {
-        margin: 0 auto; 
-        float: none; 
-        margin-bottom: 10px; 
+        margin: 0 auto;
+        float: none;
+        margin-bottom: 10px;
     }
 </style>
 <br />
-<h2 class="text-danger">Admin Control</h2>
-<div class="container mt-5 mb-3">
-    <div class="row">
-        <div class="col-md-4 c1">
-            <div class="card text-white border-danger bg-dark" style="width: 18rem;">
-                <div class="card-body">
-                    <div class="card-header text-danger">Access Control</div>
-                    <div class="text-center">
-                        <h5 class="card-title"><a asp-controller="Fiber" asp-action="UpdatePlan" class="btn btn-outline-danger">Add Plans</a></h5>
-                    </div>
-                    <div class="text-center">
-                        <h6 class="card-text text-danger"><a asp-controller="Offers" asp-action="UpdateOffer" class="btn btn-outline-danger">Add Offers</a></h6>
-                    </div>
-                    <br />
-                </div>
+<br />
+<br />
+<div class="card crd bg-dark mb-3 c1" style="max-width: 30rem;">
+    <div class="card-body">
+        <div class="login-box">
+            <h2>Admin Control</h2>
+            <div class="text-center flash">
+                <h5 class="card-title"><a asp-controller="Fiber" asp-action="UpdatePlan" class="btn btn-outline-light">Add New Plans</a></h5>
             </div>
+            <br />
+            <div class="text-center flash">
+                <h6 class="card-text "><a asp-controller="Offers" asp-action="UpdateOffer" class="btn btn-outline-light">Add New Offers</a></h6>
+            </div>
+            <br />
+            <div class="text-center flash">
+                <h6 class="card-text text-danger"><a asp-controller="Fiber" asp-action="AdminControlPlanDetails" class="btn btn-outline-light">List Of Plans</a></h6>
+            </div>
+            <br />
+            <div class="text-center flash">
+                <h6 class="card-text text-danger"><a asp-controller="Offers" asp-action="AdminControlOfferDetails" class="btn btn-outline-light">List of Offers</a></h6>
+            </div>
+            <br />
+            <div class="text-center flash">
+                <h6 class="card-text text-danger"><a asp-controller="Employee" asp-action="RegisterEmployee" class="btn btn-outline-light">Add New Employee</a></h6>
+            </div>
+            <br />
+            <div class="text-center flash">
+                <h6 class="card-text text-danger"><a asp-controller="Employee" asp-action="EmployeeList" class="btn btn-outline-light">List of Employees</a></h6>
+            </div>
+            <br />
+            <div class="text-center flash">
+                <h6 class="card-text text-danger"><a asp-controller="Customer" asp-action="CustomerList" class="btn btn-outline-light">List of Customers</a></h6>
+            </div>
+            <br />
         </div>
     </div>
 </div>
-

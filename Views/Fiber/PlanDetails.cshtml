@@ -6,58 +6,76 @@
     ViewData["Title"] = "PlanDetails";
 }
 @{
-    ViewBag.Data = HttpContextAccessor.HttpContext.Session.GetString("Username");
+    ViewBag.Data = HttpContextAccessor.HttpContext.Request.Cookies["Expiry"];
 }
 <style>
+    .tcolor {
+        color: #03e9f4;
+    }
     .card {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 </style>
 <br />
-<h2 class="text-danger">PlanDetails</h2>
-<div class="container mt-5 mb-3">
+<div class="flash">
+    <h2 style="color: snow;"><img src="~/images/Plan.png" width="40" height="40" class="d-inline-block align-top" alt=""> PlanDetails</h2>
+</div>
+<div class="container mt-5 mb-3 ">
     <div class="row">
         @foreach (var item in Model)
         {
             <div class="col-md-4">
-                <div class="card text-white border-danger bg-dark" style="width: 18rem;">
-                    <img class="card-img-top" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image cap">
+                <div class="card text-white crd bg-dark" style="width: 18rem;">
+                    <img class="card-img-top" style="width:285px;height:200px;border-radius:20px;" src="@Html.DisplayFor(modelItem => item.Image)" alt="Card image cap">
                     <div class="card-body">
                         <div class="text-center">
                             <h5 class="card-title">@Html.DisplayFor(modelItem => item.PlanName)</h5>
                         </div>
                         <div class="text-center">
-                            <h6 class="card-text text-danger"> Plan Speed: <span class="text-white">@Html.DisplayFor(modelItem => item.PlanSpeed)</span></h6>
+                            <h6 class="card-text tcolor"><span><img src="~/images/speed1.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> Plan Speed: <span class="text-white">@Html.DisplayFor(modelItem => item.PlanSpeed)</span></h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger"> Plan Validity: <span class="text-white">@Html.DisplayFor(modelItem => item.Validity)</span></h6>
+                            <h6 class="card-text tcolor"><span><img src="~/images/validity.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> Plan Validity: <span class="text-white">@Html.DisplayFor(modelItem => item.Validity)</span></h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger"> Plan Price: <span class="text-white">₹@Html.DisplayFor(modelItem => item.PlanPrice)</span></h6>
+                            <h6 class="card-text tcolor"><span><img src="~/images/price.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> Plan Price: <span class="text-white">₹@Html.DisplayFor(modelItem => item.PlanPrice)</span></h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger"> Unlimted</h6>
+                            <h6 class="card-text tcolor"><span><img src="~/images/wifi.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> Unlimted</h6>
                         </div>
                         <br />
                         <div class="text-center">
-                            <h6 class="card-text text-danger"> 24*7 std/isd Free</h6>
+                            <h6 class="card-text tcolor"><span><img src="~/images/free.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span> 24*7 std/isd Free</h6>
                         </div>
                         <br />
-                        <div class="text-center card-footer border-danger">
-                            <a asp-controller="Offers" asp-action="OfferDetails" asp-route-id="@item.OfferId" class="btn btn-outline-danger">Offers</a>
+
+                        <div class="text-center card-footer border-white flash">
+                            <a asp-controller="Offers" asp-action="OfferDetails" asp-route-id="@item.OfferId" class="btn btn-outline-light"><img src="~/images/Offer.png" width="40" height="40" class="d-inline-block align-top" alt=""></a>
                         </div>
                         <br />
-                        <div class="text-center card-footer border-danger">
-                            @if (@ViewBag.Data == null)
+                        <div class="text-center card-footer border-white flash">
+                            @if (Convert.ToDateTime(@ViewBag.Data) < DateTime.Now)
                             {
-                                <a asp-controller="Customer" asp-action="CustomerLogin" class="btn btn-outline-danger">Buy</a>
+                                <a asp-controller="Customer" asp-action="CustomerLogin">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    Buy
+                                </a>
                             }
                             else
                             {
-                                <a asp-controller="Billing" asp-action="Request" asp-route-id="@item.PlanId" class="btn btn-outline-danger">Buy</a>
+                                <a asp-controller="Billing" asp-action="RequestBill" asp-route-id="@item.PlanId">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    Buy
+                                </a>
                             }
                         </div>
                     </div>
@@ -66,4 +84,7 @@
         }
     </div>
 </div>
+<br />
+<br />
+<br />
 

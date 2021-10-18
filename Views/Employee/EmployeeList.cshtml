@@ -1,0 +1,80 @@
+﻿@model IEnumerable<FiberConnectionClient.Models.Employee>
+@{
+    ViewData["Title"] = "AdminControl";
+    Layout = "_AdminLayout";
+}
+@{
+    ViewData["Title"] = "EmployeeList";
+}
+
+<br />
+<div class="flash">
+    <h2>Employee List</h2>
+</div>
+<table class="table bg-dark crd">
+    <thead style="color: #03e9f4;">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Age)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeeMail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmployeePassword)
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+    </thead>
+    <tbody style="color: #8a6ea7;">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.WorkLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeeMail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmployeePassword)
+                </td>
+                <td class="flash">
+                    @Html.ActionLink("Update", "ProfileEdit", new { id=item.EmployeeId})
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

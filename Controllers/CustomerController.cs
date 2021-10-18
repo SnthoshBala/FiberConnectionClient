@@ -37,13 +37,13 @@ namespace FiberConnectionClient.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CustomerLogin(Customer c)
+        public async Task<IActionResult> CustomerLogin(Customer c)
         {
             using (var client = new HttpClient())
             {
                 StringContent c_content = new StringContent(JsonConvert.SerializeObject(c), Encoding.UTF8, "application/json");
-                var response = client.PostAsync("https://localhost:44378/api/Authorization/CustomerLogin", c_content).Result;
-                var response1 = client.PostAsync("https://localhost:44320/api/Customer/Login", c_content).Result;
+                var response =await client.PostAsync("https://authorizationapiteam3.azurewebsites.net/api/Authorization/CustomerLogin", c_content);
+                var response1 =await client.PostAsync("https://customerapiteam3.azurewebsites.net/api/Customer/Login", c_content);
                 if (response.IsSuccessStatusCode)
                 {
                     if (response1.IsSuccessStatusCode)
@@ -54,8 +54,8 @@ namespace FiberConnectionClient.Controllers
                         string c1 = response1.Content.ReadAsStringAsync().Result;
                         Customer CustomerDetails = JsonConvert.DeserializeObject<Customer>(c1);
 
-                        HttpContext.Session.SetString("Username", CustomerDetails.CustomerName);
-                        HttpContext.Session.SetInt32("UserId", CustomerDetails.CustomerId);
+                        HttpContext.Response.Cookies.Append("Username", CustomerDetails.CustomerName);
+                        HttpContext.Response.Cookies.Append("UserId", CustomerDetails.CustomerId.ToString());
 
                         IJwtValidator _validator = new JwtValidator(_serializer, _provider);
                         IJwtDecoder decoder = new JwtDecoder(_serializer, _validator, _urlEncoder, _algorithm);
@@ -77,22 +77,22 @@ namespace FiberConnectionClient.Controllers
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            Customer c = new Customer();
-            int id = (int)HttpContext.Session.GetInt32("UserId");
             string Token = HttpContext.Request.Cookies["Token"];
-            if (string.IsNullOrEmpty(Token))
+            string Exp = HttpContext.Request.Cookies["Expiry"];
+            if (Convert.ToDateTime(Exp) < DateTime.Now)
             {
-                return RedirectToAction("Login", "Login");
+                return RedirectToAction("CustomerLogin", "Customer");
             }
+            Customer c = new Customer();
+            int id =Convert.ToInt32( HttpContext.Request.Cookies["UserId"]);
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-                var res = await client.GetAsync("https://localhost:44320/api/Customer/" + id);
+                var res = await client.GetAsync("https://customerapiteam3.azurewebsites.net/api/Customer/" + id);
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
                     c = JsonConvert.DeserializeObject<Customer>(result);
-
                 }
             }
             return View(c);
@@ -100,17 +100,18 @@ namespace FiberConnectionClient.Controllers
         [HttpGet]
         public async Task<IActionResult> ProfileEdit()
         {
-            Customer c = new Customer();
-            int id = (int)HttpContext.Session.GetInt32("UserId");
             string Token = HttpContext.Request.Cookies["Token"];
-            if (string.IsNullOrEmpty(Token))
+            string Exp = HttpContext.Request.Cookies["Expiry"];
+            if (Convert.ToDateTime(Exp) < DateTime.Now)
             {
-                return RedirectToAction("CustomerLogin");
+                return RedirectToAction("CustomerLogin", "Customer");
             }
+            Customer c = new Customer();
+            int id = Convert.ToInt32(HttpContext.Request.Cookies["UserId"]);
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-                var res = await client.GetAsync("https://localhost:44320/api/Customer/" + id);
+                var res = await client.GetAsync("https://customerapiteam3.azurewebsites.net/api/Customer/" + id);
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -123,17 +124,18 @@ namespace FiberConnectionClient.Controllers
         [HttpPost]
         public async Task<IActionResult> ProfileEdit(Customer c)
         {
-            int id = (int)HttpContext.Session.GetInt32("UserId");
             string Token = HttpContext.Request.Cookies["Token"];
-            if (string.IsNullOrEmpty(Token))
+            string Exp = HttpContext.Request.Cookies["Expiry"];
+            if (Convert.ToDateTime(Exp) < DateTime.Now)
             {
-                return RedirectToAction("CustomerLogin");
+                return RedirectToAction("CustomerLogin", "Customer");
             }
+            int id = Convert.ToInt32(HttpContext.Request.Cookies["UserId"]);
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
                 StringContent editcon = new StringContent(JsonConvert.SerializeObject(c),Encoding.UTF8,"application/json");
-                var res =await client.PutAsync("https://localhost:44320/api/Customer?id="+id,editcon);
+                var res =await client.PutAsync("https://customerapiteam3.azurewebsites.net/api/Customer?id=" + id,editcon);
                 if(res.IsSuccessStatusCode)
                 {
                     return RedirectToAction("Profile");
@@ -145,15 +147,15 @@ namespace FiberConnectionClient.Controllers
         public async Task<IActionResult> CustomerList()
         {
             List<Customer> c = new List<Customer>();
-            string Token = HttpContext.Request.Cookies["Token"];
-            if (string.IsNullOrEmpty(Token))
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
             {
-                return RedirectToAction("AdminLogin", "Admin");
+                return RedirectToAction("AdminLogin","Admin");
             }
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
-                var res = await client.GetAsync("https://localhost:44320/api/Customer");
+                var res = await client.GetAsync("https://customerapiteam3.azurewebsites.net/api/Customer");
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -167,8 +169,29 @@ namespace FiberConnectionClient.Controllers
             if (Request.Cookies["Token"] != null)
             {
                 Response.Cookies.Delete("Token");
+                Response.Cookies.Delete("Expiry");
             }
-            return View("Plan","FiberPlan");
+            HttpContext.Session.Clear();
+            return RedirectToAction("PlanDetails","Fiber");
+        }
+        [HttpGet]
+        public IActionResult RegisterCustomer()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> RegisterCustomer(Customer c)
+        {
+            using (var client = new HttpClient())
+            {
+                StringContent addcus = new StringContent(JsonConvert.SerializeObject(c), Encoding.UTF8, "application/json");
+                var res = await client.PostAsync("https://customerapiteam3.azurewebsites.net/api/Customer", addcus);
+                if (res.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Profile");
+                }
+                return View();
+            }
         }
     }
 }

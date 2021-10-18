@@ -32,9 +32,10 @@ namespace FiberConnectionClient.Controllers
         public IActionResult AdminControl()
         {
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
-            if (string.IsNullOrEmpty(AdminToken))
+            string AdminExp= HttpContext.Request.Cookies["AdminExpiry"];
+            if (Convert.ToDateTime(AdminExp)<DateTime.Now)
             {
-                return RedirectToAction("AdminLogin");
+                return RedirectToAction("AdminLogin","Admin");
             }
             return View();
         }
@@ -49,19 +50,18 @@ namespace FiberConnectionClient.Controllers
             using (var client = new HttpClient())
             {
                 StringContent a_content = new StringContent(JsonConvert.SerializeObject(a), Encoding.UTF8, "application/json");
-                var response = client.PostAsync("https://localhost:44378/api/Authorization/AdminLogin", a_content).Result;
+                var response = client.PostAsync("https://authorizationapiteam3.azurewebsites.net/api/Authorization/AdminLogin", a_content).Result;
                if (response.IsSuccessStatusCode)
                 {
                         AdminToken = response.Content.ReadAsStringAsync().Result;
                         HttpContext.Response.Cookies.Append("AdminToken", AdminToken);
-
                         IJwtValidator _validator = new JwtValidator(_serializer, _provider);
                         IJwtDecoder decoder = new JwtDecoder(_serializer, _validator, _urlEncoder, _algorithm);
                         var tokenExp = decoder.DecodeToObject<JwtTokenExp>(AdminToken);
                         DateTimeOffset dateTimeOffset = DateTimeOffset.FromUnixTimeSeconds(tokenExp.exp);
                         DateTime timeExp = dateTimeOffset.LocalDateTime;
 
-                        HttpContext.Response.Cookies.Append("Expiry", timeExp.ToString());
+                        HttpContext.Response.Cookies.Append("AdminExpiry", timeExp.ToString());
                         return RedirectToAction("AdminControl");
                     }
                 }
@@ -72,8 +72,10 @@ namespace FiberConnectionClient.Controllers
             if (Request.Cookies["AdminToken"] != null)
             {
                 Response.Cookies.Delete("AdminToken");
+                Response.Cookies.Delete("AdminExpiry");
             }
-            return RedirectToAction("AdminControl");
+            HttpContext.Session.Clear();
+            return RedirectToAction("PlanDetails", "Fiber");
         }
         }
     }

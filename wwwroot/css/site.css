@@ -57,7 +57,9 @@ html {
   position: relative;
   min-height: 100%;
 }
-
+.tcolor {
+    color: #03e9f4;
+}
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;

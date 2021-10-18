@@ -1,14 +1,18 @@
-﻿@model IEnumerable< FiberConnectionClient.Models.FiberPlan >
+﻿@model IEnumerable<FiberConnectionClient.Models.FiberPlan>
 
 @{
     ViewData["Title"] = "AdminControlPlanDetails";
 }
+@{
+    Layout = "_AdminLayout";
+}
 
-
-<h1 class="text-danger">PlanList</h1>
-
-<table class="table border-danger">
-    <thead class="text-danger">
+<br />
+<div class="flash">
+    <h2>Plan List</h2>
+</div>
+<table class="table bg-dark crd">
+    <thead style="color: #03e9f4;">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.PlanName)
@@ -28,10 +32,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.OfferId)
             </th>
-            <th></th>
+            <th>
+                Actions
+            </th>
         </tr>
     </thead>
-    <tbody class="text-light">
+    <tbody style="color: #8a6ea7;">
         @foreach (var item in Model)
         {
             <tr>
@@ -53,9 +59,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.OfferId)
                 </td>
-                <td>
-                    <a class="btn btn-outline-danger" asp-action="AdminControlEditPlan" asp-route-id="@item.PlanId">Edit</a> |
-                    <a class="btn btn-outline-danger" asp-action="AdminControlDeletePlan" asp-route-id="@item.PlanId">Delete</a>
+                <td class="flash">
+                    <a  asp-action="AdminControlEditPlan" asp-route-id="@item.PlanId">Edit</a>
+                    <a  asp-action="AdminControlDeletePlan" asp-route-id="@item.PlanId">Delete</a>
                 </td>
             </tr>
         }

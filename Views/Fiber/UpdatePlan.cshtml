@@ -4,68 +4,70 @@
     ViewData["Title"] = "UpdatePlan";
     Layout = "_AdminLayout";
 }
-
 <style>
     .c1 {
-        margin: 0 auto; 
-        float: none;
-        margin-bottom: 10px; 
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
     }
 </style>
-<h2 class="text-light">Add Plans</h2>
-
-<hr class="bg-danger" />
-<div class="card border-light bg-danger mb-3 c1" style="max-width: 30rem;">
-    <div class="card-body text-danger">
-        <div class="card-header text-light"> Update Plan</div>
-        <div class="row">
-            <div class="col-md-10">
-                <form asp-action="UpdatePlan">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="PlanId" class="control-label text-dark">Plan Id</label>
-                        <input asp-for="PlanId" class="form-control" />
-                        <span asp-validation-for="PlanId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="PlanName" class="control-label  text-dark">Name</label>
-                        <input asp-for="PlanName" class="form-control" />
-                        <span asp-validation-for="PlanName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="PlanPrice" class="control-label  text-dark">Price</label>
-                        <input asp-for="PlanPrice" class="form-control" />
-                        <span asp-validation-for="PlanPrice" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="PlanSpeed" class="control-label  text-dark">Speed</label>
-                        <input asp-for="PlanSpeed" class="form-control" />
-                        <span asp-validation-for="PlanSpeed" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Validity" class="control-label  text-dark">Validity</label>
-                        <input asp-for="Validity" class="form-control" />
-                        <span asp-validation-for="Validity" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="OfferId" class="control-label  text-dark">Offer ID</label>
-                        <input asp-for="OfferId" class="form-control" />
-                        <span asp-validation-for="OfferId" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Image" class="control-label  text-dark">Image</label>
-                        <input asp-for="Image" class="form-control" />
-                        <span asp-validation-for="Image" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="UpdatePlan" class="btn  btn-dark btn-outline-danger" />
-                    </div>
-                </form>
-            </div>
-        </div>
+<br />
+<br />
+<br />
+<div class="card crd bg-dark mb-3 c1" style="max-width: 30rem;">
+    <div class="card-body">
+        <div class="login-box">
+            <h2>Add Plan</h2>
+            <form id="f1" asp-action="UpdatePlan">
+                <div class="user-box">
+                    <input asp-for="PlanId" required>
+                    <label>Id</label>
+                    <span asp-validation-for="PlanId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="PlanName" required>
+                    <label>Plan Name</label>
+                    <span asp-validation-for="PlanName" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="PlanPrice" required>
+                    <label>Plan Price</label>
+                    <span asp-validation-for="PlanPrice" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="PlanSpeed" required>
+                    <label>Speed</label>
+                    <span asp-validation-for="PlanSpeed" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Validity" required>
+                    <label>Validity</label>
+                    <span asp-validation-for="Validity" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="OfferId" required>
+                    <label>OfferId</label>
+                    <span asp-validation-for="OfferId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="Image" required>
+                    <label>Image</label>
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <a href="#" onclick="document.getElementById('f1').submit();">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Add Plan
+                </a>
+                <a asp-action="AdminControl" asp-controller="Admin">
+                    Back
+                </a>
+            </form>
         </div>
     </div>
-
-        @section Scripts {
-            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-        }
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

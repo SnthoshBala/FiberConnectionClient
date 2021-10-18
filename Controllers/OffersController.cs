@@ -17,8 +17,9 @@ namespace FiberConnectionClient.Controllers
         [HttpGet]
         public IActionResult UpdateOffer()
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
-            if (string.IsNullOrEmpty(AdminToken))
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
             {
                 return RedirectToAction("AdminLogin", "Admin");
             }
@@ -28,12 +29,17 @@ namespace FiberConnectionClient.Controllers
         [HttpPost]
         public async Task<IActionResult> UpdateOffer(Offer o)
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+            }
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
                 StringContent addo = new StringContent(JsonConvert.SerializeObject(o), Encoding.UTF8, "application/json");
-                var res = await client.PostAsync("https://localhost:44341/api/Offer", addo);
+                var res = await client.PostAsync("https://offersapiteam3.azurewebsites.net/api/Offer", addo);
                 if (res.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AdminControlOfferDetails");
@@ -44,8 +50,9 @@ namespace FiberConnectionClient.Controllers
         [HttpGet]
         public async Task<IActionResult> AdminControlOfferDetails()
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
-            if (string.IsNullOrEmpty(AdminToken))
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
             {
                 return RedirectToAction("AdminLogin", "Admin");
             }
@@ -53,7 +60,7 @@ namespace FiberConnectionClient.Controllers
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
-                var res = await client.GetAsync("https://localhost:44341/api/Offer");
+                var res = await client.GetAsync("https://offersapiteam3.azurewebsites.net/api/Offer");
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -70,7 +77,7 @@ namespace FiberConnectionClient.Controllers
             Offer o = new Offer();
             using (var client = new HttpClient())
             {
-                var res = await client.GetAsync("https://localhost:44341/api/Offer/"+id);
+                var res = await client.GetAsync("https://offersapiteam3.azurewebsites.net/api/Offer/" + id);
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -84,8 +91,9 @@ namespace FiberConnectionClient.Controllers
         [HttpGet]
         public async Task<IActionResult> AdminControlEditOffer(int id)
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
-            if (string.IsNullOrEmpty(AdminToken))
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
             {
                 return RedirectToAction("AdminLogin", "Admin");
             }
@@ -93,7 +101,7 @@ namespace FiberConnectionClient.Controllers
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
-                var res = await client.GetAsync("https://localhost:44341/api/Offer/ " + id);
+                var res = await client.GetAsync("https://offersapiteam3.azurewebsites.net/api/Offer/ " + id);
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -106,12 +114,17 @@ namespace FiberConnectionClient.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminControlEditOffer(int id,Offer o)
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+            }
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
                 StringContent edito = new StringContent(JsonConvert.SerializeObject(o), Encoding.UTF8, "application/json");
-                var res = await client.PutAsync("https://localhost:44341/api/Offer?id=" + id, edito);
+                var res = await client.PutAsync("https://offersapiteam3.azurewebsites.net/api/Offer?id=" + id, edito);
                 if (res.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AdminControlOfferDetails");
@@ -122,8 +135,9 @@ namespace FiberConnectionClient.Controllers
         [HttpGet]
         public async Task<IActionResult> AdminControlDeleteOffer(int id)
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
-            if (string.IsNullOrEmpty(AdminToken))
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
             {
                 return RedirectToAction("AdminLogin", "Admin");
             }
@@ -131,7 +145,7 @@ namespace FiberConnectionClient.Controllers
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
-                var res = await client.GetAsync("https://localhost:44341/api/Offer" + id);
+                var res = await client.GetAsync("https://offersapiteam3.azurewebsites.net/api/Offer/" + id);
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -144,11 +158,16 @@ namespace FiberConnectionClient.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminControlDeletePlan(int id, Offer o)
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+            }
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
-                var res = await client.DeleteAsync("https://localhost:44341/api/Offer?id=" + id);
+                var res = await client.DeleteAsync("https://offersapiteam3.azurewebsites.net/api/Offer?id=" + id);
                 if (res.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AdminControlOfferDetails");

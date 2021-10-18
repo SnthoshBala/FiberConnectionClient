@@ -1,0 +1,43 @@
+﻿@model FiberConnectionClient.Models.Employee
+@{
+    Layout = "_EmployeeLayout";
+}
+@{
+    ViewData["Title"] = "EmployeeLogin";
+}
+<style>
+    .c1 {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="card crd bg-dark mb-3 c1" style="max-width: 30rem;">
+    <div class="card-body">
+        <div class="login-box">
+            <h2><span><img src="~/images/employee.png" width="40" height="40" class="d-inline-block align-top" alt=""> </span>Employee Login</h2>
+            <form id="f1" asp-action="EmployeeLogin">
+                <div class="user-box">
+                    <input asp-for="EmployeeMail" required>
+                    <label><span><img src="~/images/employee.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span>Employee Mail</label>
+                    <span asp-validation-for="EmployeeMail" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="EmployeePassword" required>
+                    <label><span><img src="~/images/employeepass.png" width="25" height="25" class="d-inline-block align-top" alt=""> </span>Employee Password</label>
+                    <span asp-validation-for="EmployeePassword" class="text-danger"></span>
+                </div>
+                <a href="#" onclick="document.getElementById('f1').submit();">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <img src="~/images/login.png" width="25" height="25" class="d-inline-block align-top" alt=""> Login
+                </a>
+            </form>
+        </div>
+    </div>
+</div>

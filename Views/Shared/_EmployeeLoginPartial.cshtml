@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<ul class="navbar-nav">
+    @{
+        ViewBag.Data = HttpContextAccessor.HttpContext.Session.GetString("EmpName");
+    }
+    @if (@ViewBag.Data != null)
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Employee" asp-action="Profile">@ViewBag.Data</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Employee" asp-action="Logout">Logout</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Fiber" asp-action="PlanDetails">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Customer" asp-action="CustomerLogin">UserLogin</a>
+        </li>
+    }
+</ul>

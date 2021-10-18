@@ -3,64 +3,67 @@
 @{
     ViewData["Title"] = "ProfileEdit";
 }
-
-<h1>ProfileEdit</h1>
-
-<h4>Customer</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="ProfileEdit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group" hidden>
-                <label asp-for="CustomerId" class="control-label"></label>
-                <input asp-for="CustomerId" class="form-control" />
-                <span asp-validation-for="CustomerId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerName" class="control-label"></label>
-                <input asp-for="CustomerName" class="form-control" />
-                <span asp-validation-for="CustomerName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
-                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerAddress" class="control-label"></label>
-                <input asp-for="CustomerAddress" class="form-control" />
-                <span asp-validation-for="CustomerAddress" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerPhoneNumber" class="control-label"></label>
-                <input asp-for="CustomerPhoneNumber" class="form-control" />
-                <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerAadharNo" class="control-label"></label>
-                <input asp-for="CustomerAadharNo" class="form-control" />
-                <span asp-validation-for="CustomerAadharNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CustomerMailId" class="control-label"></label>
-                <input asp-for="CustomerMailId" class="form-control" />
-                <span asp-validation-for="CustomerMailId" class="text-danger"></span>
-            </div>
-            <div class="form-group" hidden>
-                <label asp-for="CustomerPassword" class="control-label"></label>
-                <input asp-for="CustomerPassword" class="form-control" />
-                <span asp-validation-for="CustomerPassword" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+<style>
+    .c1 {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
+</style>
+<br />
+<br />
+<br />
+<div class="card border-light crd bg-dark mb-3 c1" style="max-width: 30rem;">
+    <div class="card-body">
+        <div class="login-box">
+            <h2>Profile Edit</h2>
+            <form id="f1" asp-action="ProfileEdit">
+                <div class="user-box">
+                    <input asp-for="CustomerId" hidden>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerName" required>
+                    <label>Name</label>
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerPhoneNumber" required>
+                    <label>Phone Number</label>
+                    <span asp-validation-for="CustomerPhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerAadharNo" required>
+                    <label>Aadhar Number</label>
+                    <span asp-validation-for="CustomerAadharNo" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerAddress" required>
+                    <label>Address</label>
+                    <span asp-validation-for="CustomerAddress" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="DateOfBirth" required>
+                    <label>DOB</label>
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerMailId" required>
+                    <label>Mail ID</label>
+                    <span asp-validation-for="CustomerMailId" class="text-danger"></span>
+                </div>
+                <div class="user-box">
+                    <input asp-for="CustomerPassword" hidden required>
+                </div>
+                <a href="#" onclick="document.getElementById('f1').submit();">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    Update
+                </a>
+            </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

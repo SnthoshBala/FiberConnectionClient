@@ -1,0 +1,61 @@
+﻿@model FiberConnectionClient.Models.Status
+@{
+    ViewData["Title"] = "StatusDetails";
+}
+<style>
+    .c1 {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+    }
+    .tcolor {
+        color: #03e9f4;
+    }
+
+    .text-n {
+        color: #8a6ea7;
+    }
+</style>
+
+
+<div class="container c1">
+    <div class="row">
+        <div class="col c1">
+            <div class="card text-n login-box crd bg-dark c1" style="width: 30rem;">
+                <div class="card-body text-center">
+                    <div class="card-header text-white text-center">Access Control</div>
+                    <div class="text-center text-n">
+                        Name : <span class="tcolor">@Html.DisplayFor(model => model.CustomerName)</span>
+                    </div>
+                    <br />
+                    <div class="text-center text-n">
+                        Plan : <span class="tcolor">@Html.DisplayFor(model => model.PlanName)</span>
+                    </div>
+                    <br />
+                    <div class="text-center text-n">
+                        Plan Price : <span class="tcolor">@Html.DisplayFor(model => model.PlanPrice)</span>
+                    </div>
+                    <br />
+                    <div class="text-center text-n">
+                        Status : <span class="tcolor">@Html.DisplayFor(model => model.Status1)</span>
+                    </div>
+                    <br />
+                    <div class="text-center text-n">
+                        Worker Name : <span class="tcolor">@Html.DisplayFor(model => model.EmployeeName)</span>
+                    </div>
+                    <br />
+                    <div class="text-center text-n">
+                        Worker Number : <span class="tcolor">@Html.DisplayFor(model => model.EmployeePhonenumber)</span>
+                    </div>
+                    <br />
+
+
+                    <form asp-action="StatusCancel" class="c1 flash">
+                        <a asp-action="StatusList">Back</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

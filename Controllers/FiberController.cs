@@ -17,10 +17,12 @@ namespace FiberConnectionClient.Controllers
         [HttpGet]
         public IActionResult UpdatePlan()
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
-            if (string.IsNullOrEmpty(AdminToken))
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
             {
                 return RedirectToAction("AdminLogin", "Admin");
+
             }
             return View();
         }
@@ -44,25 +46,25 @@ namespace FiberConnectionClient.Controllers
         [HttpGet]
         public async Task<IActionResult> AdminControlPlanDetails()
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
-            if (string.IsNullOrEmpty(AdminToken))
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
             {
                 return RedirectToAction("AdminLogin", "Admin");
+
             }
             List<FiberPlan> fpp = new List<FiberPlan>();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
-                var res = await client.GetAsync("https://localhost:44393/api/Fiber");
+                var res = await client.GetAsync("https://fiberplanapiteam3.azurewebsites.net/api/Fiber");
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
                     fpp = JsonConvert.DeserializeObject<List<FiberPlan>>(result);
-
                 }
                 return View(fpp);
             }
-
         }
         [HttpGet]
         public async Task<IActionResult> PlanDetails()
@@ -70,7 +72,7 @@ namespace FiberConnectionClient.Controllers
             List<FiberPlan> fpp = new List<FiberPlan>();
             using (var client = new HttpClient())
             {
-                var res = await client.GetAsync("https://localhost:44393/api/Fiber");
+                var res = await client.GetAsync("https://fiberplanapiteam3.azurewebsites.net/api/Fiber");
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -84,16 +86,18 @@ namespace FiberConnectionClient.Controllers
         [HttpGet]
         public async Task<IActionResult> AdminControlEditPlan(int id)
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
-            if (string.IsNullOrEmpty(AdminToken))
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
             {
                 return RedirectToAction("AdminLogin", "Admin");
+
             }
             FiberPlan fp = new FiberPlan();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
-                var res = await client.GetAsync("https://localhost:44393/api/Fiber/"+id);
+                var res = await client.GetAsync("https://fiberplanapiteam3.azurewebsites.net/api/Fiber/" + id);
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -106,12 +110,18 @@ namespace FiberConnectionClient.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminControlEditPlan(int id, FiberPlan fp)
         {
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
+            {
+                return RedirectToAction("AdminLogin", "Admin");
+
+            }
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
                 StringContent editfp = new StringContent(JsonConvert.SerializeObject(fp), Encoding.UTF8, "application/json");
-                var res = await client.PutAsync("https://localhost:44393/api/Fiber?id=" + id, editfp);
+                var res = await client.PutAsync("https://fiberplanapiteam3.azurewebsites.net/api/Fiber?id=" + id, editfp);
                 if (res.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AdminControlPlanDetails");
@@ -122,16 +132,19 @@ namespace FiberConnectionClient.Controllers
         [HttpGet]
         public async Task<IActionResult> AdminControlDeletePlan(int id)
         {
+
             string AdminToken = HttpContext.Request.Cookies["AdminToken"];
-            if (string.IsNullOrEmpty(AdminToken))
+            string AdminExp = HttpContext.Request.Cookies["AdminExpiry"];
+            if (Convert.ToDateTime(AdminExp) < DateTime.Now)
             {
                 return RedirectToAction("AdminLogin", "Admin");
+
             }
             FiberPlan fp = new FiberPlan();
             using (var client = new HttpClient())
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
-                var res = await client.GetAsync("https://localhost:44393/api/Fiber/" + id);
+                var res = await client.GetAsync("https://fiberplanapiteam3.azurewebsites.net/api/Fiber/" + id);
                 if (res.IsSuccessStatusCode)
                 {
                     var result = res.Content.ReadAsStringAsync().Result;
@@ -144,11 +157,12 @@ namespace FiberConnectionClient.Controllers
         [HttpPost]
         public async Task<IActionResult> AdminControlDeletePlan(int id,FiberPlan fp)
         {
+
                 string AdminToken = HttpContext.Request.Cookies["AdminToken"];
                 using (var client = new HttpClient())
                 {
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
-                    var res = await client.DeleteAsync("https://localhost:44393/api/Fiber?id="+id);
+                    var res = await client.DeleteAsync("https://fiberplanapiteam3.azurewebsites.net/api/Fiber?id=" + id);
                     if (res.IsSuccessStatusCode)
                     {
                         return RedirectToAction("AdminControlPlanDetails");
