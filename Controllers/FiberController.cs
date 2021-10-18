@@ -35,7 +35,7 @@ namespace FiberConnectionClient.Controllers
             {
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AdminToken);
                 StringContent addfp = new StringContent(JsonConvert.SerializeObject(fp), Encoding.UTF8, "application/json");
-                var res = await client.PostAsync("https://localhost:44393/api/Fiber", addfp);
+                var res = await client.PostAsync("https://fiberplanapiteam3.azurewebsites.net/api/Fiber", addfp);
                 if (res.IsSuccessStatusCode)
                 {
                     return RedirectToAction("AdminControlPlanDetails");
