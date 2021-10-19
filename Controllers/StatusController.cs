@@ -114,6 +114,7 @@ namespace FiberConnectionClient.Controllers
                     s = JsonConvert.DeserializeObject<Status>(result);
                     s.EmployeeName = HttpContext.Session.GetString("EmpName");
                     s.EmployeePhonenumber = HttpContext.Session.GetString("EmpPhone");
+                    s.EmployeeId = Convert.ToInt32(HttpContext.Session.GetString("EmpId"));
                     s.Status1 = "On Process";
                 }
                 return View(s);
