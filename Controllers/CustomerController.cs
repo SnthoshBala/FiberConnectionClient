@@ -64,7 +64,7 @@ namespace FiberConnectionClient.Controllers
                         DateTime timeExp = dateTimeOffset.LocalDateTime;
 
                         HttpContext.Response.Cookies.Append("Expiry", timeExp.ToString());
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("PlanDetails", "FiberPlan");
                     }
                     else
                     {
