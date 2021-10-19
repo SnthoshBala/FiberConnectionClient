@@ -4,7 +4,7 @@
     ViewData["Title"] = "Home Page";
     ViewBag.Data = HttpContextAccessor.HttpContext.Request.Cookies["Username"];
     ViewBag.Token = HttpContextAccessor.HttpContext.Request.Cookies["Token"];
-}b
+}
 
 <div class="text-center">
     @if (@ViewBag.Token != null)
@@ -15,5 +15,5 @@
     { 
         <h1 class="display-4">Welcome To FiberFlix</h1>
     }
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Get Your Wifi Connection Here</p>
 </div>
