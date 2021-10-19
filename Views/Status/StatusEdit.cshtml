@@ -16,7 +16,7 @@
 <div class="card border-light bg-dark mb-3 c1" style="max-width: 30rem;">
     <div class="card-body">
         <div class="login-box">
-            <h2>Sign Up</h2>
+            <h2>Get Work</h2>
             <form id="f1" asp-action="StatusEdit">
                 <div class="user-box">
                     <input asp-for="StatusId" required>
@@ -62,6 +62,11 @@
                     <input asp-for="BillingNumber" required>
                     <label>Billing Number</label>
                     <span asp-validation-for="BillingNumber" class="text-danger"></span>
+                </div>
+               <div class="user-box">
+                    <input asp-for="CustomerName" required>
+                    <label>Customer Name</label>
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
                 </div>
                 <div class="user-box">
                     <input asp-for="CustomerAddress" required>
