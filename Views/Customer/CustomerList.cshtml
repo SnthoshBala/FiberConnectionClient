@@ -10,7 +10,7 @@
 
 <br />
 <div class="flash">
-    <h2>Booking Status</h2>
+    <h2>Customer List</h2>
 </div>
 <table class="table table-responsive bg-dark crd">
     <thead style="color: #03e9f4;">
@@ -35,9 +35,6 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CustomerMailId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CustomerPassword)
             </th>
             <th></th>
         </tr>
@@ -66,9 +63,6 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CustomerMailId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CustomerPassword)
                 </td>
             </tr>
         }
